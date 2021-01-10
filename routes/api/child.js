@@ -32,6 +32,7 @@ const getAllChildren = (req, res) => {
 
 const getChildByAWC = (req, res) => {
     awc_id = req.params.awc_id;
+    console.log(awc_id)
     pool.query('SELECT * FROM child_data WHERE awc_id = $1', [awc_id], (error, results) => {
         if (error) {
             res.status(400).json({
