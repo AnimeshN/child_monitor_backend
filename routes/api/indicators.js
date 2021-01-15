@@ -5,12 +5,9 @@ const getGirlsWFH = (req, res) => {
     //gender = req.params.gender;
     flag = req.params.flag;
     
-    if (gender == 'girl' && flag =='0'){
-        console.log("Inside if loop");
-        pool.query('SELECT * FROM girls023_wfl' , (err, result) => {
-    // if (flag =='0'){
+    if (flag =='0'){
         
-    //     pool.query('SELECT * FROM wfh_girls_0_23_zscores' , (err, result) => {
+        pool.query('SELECT * FROM wfh_girls_0_23_zscores' , (err, result) => {
             if(err){
                 res.status(400).json({
                     "result": "Problem executing query",
