@@ -96,8 +96,17 @@ const getAllChildren = (req, res) => {
 
 const getChildByAWC = (req, res) => {
   awc_id = req.params.awc_id;
-  pool.query(
-    "SELECT * FROM child_data WHERE awc_id = $1",
+  category = req.params.category
+  let my_query;
+  if(category === 'wasted')
+  my_query = "SELECT * FROM child_data WHERE awc_id = $1 AND wasted = 1"
+  else if(category === 'sam')
+  my_query = "SELECT * FROM child_data WHERE awc_id = $1 AND sam = 1"
+  else if(category === 'mam')
+  my_query = "SELECT * FROM child_data WHERE awc_id = $1 AND mam = 1"
+  
+    pool.query(
+    my_query,
     [awc_id],
     (error, results) => {
       if (error) {
